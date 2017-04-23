@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+
+	<title>{% block title %}Rated People{% endblock %}</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<link rel="stylesheet" href="build/style.css" />
+
+	{% block opengraph %}
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="" />
+		<meta property="og:type" content="object" />
+		<meta property="og:url" content="" />
+		<meta property="og:site_name" content="" />
+		<meta property="og:image" content="" />
+	{% endblock %}
+
+	{%  block extraMeta %}{% endblock %}
+
+	{% block canonical %}
+	{% endblock %}
+
+	{% block robots %}
+	{% endblock %}
+
+	{% block headJavascripts %}
+	{% endblock %}
+
+	<!-- icons -->
+	<link rel="icon" type="image/x-icon" href="/favicon-rp.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon-114x114.png" />
+
+	{% block stylesheets %}
+        <style>
+            div {
+                outline: 1px solid black;
+                margin: 5px;
+                padding: 5px;
+            }
+        </style>
+	{% endblock %}
+</head>
+<body class="body-fixed-top-padding js-body"><p>test</p>
+    {% block tracking %}
+    {% endblock %}
+
+    {% block aboveNav %}{% endblock %}
+
+    {% block mainNav %}
+    <div id="main-navigation" class="container-fixed-top">
+    </div>
+    {% endblock %}
+
+    {# local content start #}
+    {% block content %}{% endblock %}
+    {# local content start #}
+
+    {% block mainFooter %}
+    {% endblock %}
+
+    {% block belowFooter %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+
+  <script src="build/bundle.js"></script>
+</body>
+</html>
