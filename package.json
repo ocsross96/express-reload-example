@@ -8,12 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "node-sass --output-style expanded --source-map ./build/style.css.map -o ./build ./client/sass/style.scss",
     "watch:css": "node-sass -w ./client/sass/style.scss --output-style expanded --source-map true ./build/style.css.map -o ./build ./client/sass/style.scss",
-    "build:js": "browserify ./client/js -o ./build/bundle.js -d",
-    "watch:js": "watchify ./client/js -o ./build/bundle.js -d",
+    "build:js": "browserify ./client/js -o ./build/bundle.js -d -t [ babelify --presets [ env ] ]",
+    "watch:js": "watchify ./client/js -o ./build/bundle.js -d -t [ babelify --presets [ env ] ]",
     "watch:server": "nodemon ./server/index.js -e njk,css,js --watch ./build --watch ./server/views",
-    "livereload": "live-reload server build --port 9091",
-    "build:watch": "parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run watch:server' 'npm run livereload'",
-    "build:prod": "parallelshell 'npm run build:css' 'npm run build:js' ./server/index.js"
+    "livereload": "live-reload ./server/views ./build --port 9091",
+    "build:watch": "parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run watch:server' 'npm run livereload'"
   },
   "author": "",
   "license": "ISC",
