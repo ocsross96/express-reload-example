@@ -12,6 +12,7 @@ function standardController (options) {
   } catch (err) {
     console.log('Error', err);
   }
+
   // LocationService.get().then((response) => {
   //   return res.render('pages/local', response);
   // });
