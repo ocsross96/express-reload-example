@@ -10,6 +10,7 @@ app.set('view engine', 'njk');
 nunjucksConfig.setup(app);
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use('/client/sass', express.static(path.join(__dirname, '../client/sass')));
 
 const indexRoute = require('./routers/index.route');
 app.use('/', indexRoute);

@@ -6,18 +6,20 @@
   "scripts": {
     "build": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "node-sass -w client/sass/style.scss --output-style compressed -o build client/sass/style.scss",
-    "build:js": "browserify -o ./build/bundle.js client/js/index.js",
-    "watchify": "watchify client/js/index.js -o ./build/bundle.js",
-    "dev": "npm run sass && npm run watchify && nodemon ./bin/www ./server/index.js --w build server",
+    "build:css": "node-sass --output-style expanded --source-map ./build/style.css.map -o ./build ./client/sass/style.scss",
+    "watch:css": "node-sass -w ./client/sass/style.scss --output-style expanded --source-map true ./build/style.css.map -o ./build ./client/sass/style.scss",
+    "build:js": "browserify ./client/js -o ./build/bundle.js -d",
+    "watch:js": "watchify ./client/js -o ./build/bundle.js -d",
+    "watch:server": "nodemon ./server/index.js -e njk,css,js --watch ./build --watch ./server/views",
     "livereload": "live-reload server build --port 9091",
-    "practice": "nodemon ./server/index.js -e njk,css,js --watch build --watch server --watch client",
-    "watch": "nodemon ./server/index.js -e njk,css,js --watch build --watch server",
-    "all": "parallelshell 'npm run build:css' 'npm run watchify' 'npm run watch' 'npm run livereload'"
+    "build:watch": "parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run watch:server' 'npm run livereload'",
+    "build:prod": "parallelshell 'npm run build:css' 'npm run build:js' ./server/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-env": "^1.4.0",
+    "babelify": "^7.3.0",
     "browserify": "^14.3.0",
     "express": "^4.15.2",
     "live-reload": "^1.1.0",
